@@ -41,12 +41,24 @@ h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
 .sec b{color:var(--ink);font-weight:600}
 
 /* controls */
-.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 18px;margin-bottom:20px}
-.controls .grp{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
-.controls .grp .v{color:var(--ink)}
-.controls .sep{flex:1}
 button.pre{border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px inherit;padding:8px 12px;border-radius:9px;cursor:pointer}
 button.pre:hover{border-color:var(--ink)}
+/* scenario + adjust panels */
+.panels{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:20px}
+.panel{padding:16px 18px}
+.panel h2{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 2px;font-weight:700}
+.panel .hint{font-size:13px;color:var(--muted);margin:0 0 12px}
+.scens{display:flex;flex-wrap:wrap;gap:8px}
+button.pre.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button.pre.on::before{content:"✓ "}
+.scen-desc{margin:12px 0 0;font-size:13px;padding:9px 12px;border-radius:9px;background:var(--bg);border-left:3px solid var(--ink)}
+.scen-desc.custom{border-left-color:var(--muted);color:var(--muted)}
+.adj .grp{display:grid;grid-template-columns:1fr auto;grid-template-areas:'l v' 's s';gap:6px 10px;align-items:center;margin-bottom:10px;font-size:13px;color:var(--muted)}
+.adj .grp>span:first-child{grid-area:l}
+.adj .grp>input{grid-area:s;width:100%}
+.adj .grp>.v{grid-area:v;color:var(--ink)}
+button.link{background:none;border:0;padding:0;color:var(--muted);font:600 13px inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+button.link:hover{color:var(--ink)}
 
 /* main */
 .main{display:grid;grid-template-columns:minmax(300px,4fr) 9fr;gap:20px;align-items:start}
@@ -67,7 +79,7 @@ tr.sel td{background:var(--yes-soft)}
 .cn small{display:block;font-weight:400;color:var(--muted);font-size:12px}
 .cell{display:flex;align-items:center;gap:10px}
 .cell input[type=range]{flex:1}
-.cell .v,.controls .grp .v{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;font-weight:600}
+.cell .v,.adj .grp .v{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;font-weight:600}
 .pct{width:58px;font:inherit;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:3px 6px;-moz-appearance:textfield}
 .pct::-webkit-inner-spin-button,.pct::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .pct:focus{outline:none;border-color:var(--ink)}
@@ -78,7 +90,6 @@ input[type=range]{-webkit-appearance:none;appearance:none;width:100%;min-width:9
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);border:2px solid var(--card);box-shadow:0 0 0 1px var(--ink);cursor:grab}
 input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ink);border:2px solid var(--card);cursor:pointer}
 input.yes{background:linear-gradient(90deg,var(--no) 50%,var(--yes) 50%);opacity:.9}
-input.master{width:180px}
 footer{color:var(--muted);font-size:12.5px;margin-top:28px;max-width:900px}
 footer p{margin:4px 0}
 a{color:inherit}
@@ -93,10 +104,9 @@ input[type=range]{touch-action:pan-y}
   th{position:static}
   input[type=range]{min-width:120px}
   .big .num{font-size:44px}
-  .controls .grp{flex:1 1 320px}
-  .controls input.master{flex:1;width:auto}
 }
 @media (max-width:900px){
+  .panels{grid-template-columns:1fr}
   .big .note,.chips{display:none}
   .big{padding:12px 16px}
   .big .num{font-size:32px}
@@ -116,6 +126,9 @@ input[type=range]{touch-action:pan-y}
   td.votes{font-size:12px}
 }
 @media (max-width:700px){
+  .panel{padding:12px 14px}
+  .scens{display:grid;grid-template-columns:1fr}
+  button.pre{text-align:left;padding:11px 12px}
   body{font-size:14px}
   .wrap{padding:14px 12px 40px}
   header{flex-direction:column;gap:12px;margin-bottom:12px}
@@ -128,17 +141,6 @@ input[type=range]{touch-action:pan-y}
   .big .note,.chips{display:none}
   .verdict .num{font-size:19px;word-break:break-word}
   .sec{gap:6px 16px;font-size:13px;margin-bottom:12px}
-  .controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
-  .controls .sep{display:none}
-  .controls button.pre{width:100%;padding:11px 10px;text-align:left}
-  .controls .grp{grid-column:1/-1;flex:none}
-  .controls input.master{flex:none;width:100%}
-  .controls .grp{display:grid;grid-template-columns:1fr auto;grid-template-areas:'l v' 's s';align-items:center;gap:8px;padding-top:6px}
-  .controls .grp>span:first-child{grid-area:l}
-  .controls .grp>input{grid-area:s}
-  .controls .grp>.v{grid-area:v}
-  .controls .grp{position:relative}
-  .controls .grp>span:first-child{color:var(--ink);font-weight:600}
   .pct{font-size:16px;width:64px;padding:6px 8px}
   .mapcard{padding:10px}
 }
@@ -169,15 +171,25 @@ input[type=range]{touch-action:pan-y}
   </section>
   <div class="sec"><span><span id="t-turnout"></span>: <b id="o-turnout"></b></span><span><span id="t-voters"></span>: <b id="o-voters"></b></span><span><span id="t-votes"></span>: <b id="o-votesTot"></b></span></div>
 
-  <section class="card controls">
-    <button class="pre" id="p-result"></button>
-    <button class="pre" id="p-rahmen"></button>
-    <button class="pre" id="p-fifty"></button>
-    <button class="pre" id="p-turnout"></button>
-    <span class="sep"></span>
-    <label class="grp"><span id="t-mYes"></span><input class="master" type="range" id="m-yes" min="0" max="100" step="0.1" value="50"><span class="v"><input class="pct" type="number" id="mv-yes" min="0" max="100" step="0.1">%</span></label>
-    <label class="grp"><span id="t-mTurn"></span><input class="master" type="range" id="m-turn" min="0" max="100" step="0.1" value="50"><span class="v"><input class="pct" type="number" id="mv-turn" min="0" max="100" step="0.1">%</span></label>
-  </section>
+  <div class="panels">
+    <section class="card panel">
+      <h2 id="t-scenTitle"></h2>
+      <p class="hint" id="t-scenSub"></p>
+      <div class="scens" role="group" aria-labelledby="t-scenTitle">
+        <button class="pre" id="p-rahmen" data-scen="rahmen"></button>
+        <button class="pre" id="p-result" data-scen="result"></button>
+        <button class="pre" id="p-fifty" data-scen="fifty"></button>
+      </div>
+      <p class="scen-desc" id="scen-desc"></p>
+    </section>
+    <section class="card panel adj">
+      <h2 id="t-adjTitle"></h2>
+      <p class="hint" id="t-adjSub"></p>
+      <label class="grp"><span id="t-mYes"></span><input class="master" type="range" id="m-yes" min="0" max="100" step="0.1" value="50"><span class="v"><input class="pct" type="number" id="mv-yes" min="0" max="100" step="0.1">%</span></label>
+      <label class="grp"><span id="t-mTurn"></span><input class="master" type="range" id="m-turn" min="0" max="100" step="0.1" value="50"><span class="v"><input class="pct" type="number" id="mv-turn" min="0" max="100" step="0.1">%</span></label>
+      <button class="link" id="p-turnout"></button>
+    </section>
+  </div>
 
   <div class="main">
     <div class="card mapcard">
@@ -212,7 +224,7 @@ const I18N = {
   turnout:"Stimmbeteiligung gesamt",voters:"Stimmberechtigte",votes:"Abgegebene Stimmen",
   volk:"Volksmehr",stand:"Ständemehr",needStand:"mind. 12 von 23 nötig",needVolk:"mehr als 50 % nötig",
   pYes:"Ja-Anteil",pTurn:"Stimmbeteiligung",
-  presetResult:"Resultat 10-Millionen-Schweiz",presetFifty:"Überall 50 % Ja",presetTurn:"Beteiligung zurücksetzen",presetRahmen:"Rahmenverträge (hypothetisch)",rahmenNote:"Szenario «Rahmenverträge» (hypothetisch, keine Prognose): 55 % Ja gesamt, zwischen den Umfragen (Leewas 46:40, gfs.bern/Interpharma 62:31). Die kantonalen Unterschiede entsprechen der durchschnittlichen Abweichung vom Landesergebnis bei EWR 1992, Bilaterale I 2000, Schengen/Dublin 2005, Personenfreizügigkeit 2005 und 2009, Masseneinwanderungsinitiative 2014 und Begrenzungsinitiative 2020 (Quelle: Swissvotes). Die Beteiligung ist der Durchschnitt dieser Abstimmungen ohne EWR.",
+  presetResult:"10-Millionen-Schweiz (Resultat)",presetFifty:"Überall 50 % Ja",presetTurn:"Beteiligung zurücksetzen",scenTitle:"Szenarien",scenSub:"Wähle ein Szenario als Ausgangslage – es setzt Ja-Anteil und Stimmbeteiligung für alle Kantone.",adjTitle:"Alle Kantone anpassen",adjSub:"Setzt alle Kantone auf denselben Wert.",custom:"Eigene Werte",descRahmen:"Hypothetische Abstimmung über die Rahmenverträge mit der EU: 55 % Ja gesamt, kantonale Unterschiede wie bei früheren Europa-Abstimmungen.",descResult:"Tatsächliches Resultat der Abstimmung vom 14. Juni 2026 («Keine 10-Millionen-Schweiz!»).",descFifty:"Alle Kantone auf genau 50 % Ja gesetzt.",descCustom:"Eigene Werte: Das Szenario wurde von Hand angepasst.",presetRahmen:"Rahmenverträge (hypothetisch)",rahmenNote:"Szenario «Rahmenverträge» (hypothetisch, keine Prognose): 55 % Ja gesamt, zwischen den Umfragen (Leewas 46:40, gfs.bern/Interpharma 62:31). Die kantonalen Unterschiede entsprechen der durchschnittlichen Abweichung vom Landesergebnis bei EWR 1992, Bilaterale I 2000, Schengen/Dublin 2005, Personenfreizügigkeit 2005 und 2009, Masseneinwanderungsinitiative 2014 und Begrenzungsinitiative 2020 (Quelle: Swissvotes). Die Beteiligung ist der Durchschnitt dieser Abstimmungen ohne EWR.",
   mYes:"Alle Ja-Anteile setzen",mTurn:"Alle Beteiligungen setzen",
   canton:"Kanton",votesCol:"Ja / Nein",lNo:"Nein",lYes:"Ja",yesWord:"Ja",noWord:"Nein",half:"Halbkanton (zählt ½)",
   notes:"Annahmen: Der Ja-Anteil gilt für die gültigen Stimmen; leere und ungültige Stimmen werden nicht berücksichtigt. Ein Kanton zählt bei mehr als 50 % Ja als Ja-Stand (bei genau 50 % gilt er als Nein). Halbkantone (OW, NW, BS, BL, AR, AI) zählen je ½ Standesstimme; für das Ständemehr braucht es 12 von 23 Standesstimmen.",
@@ -223,7 +235,7 @@ const I18N = {
   turnout:"Participation totale",voters:"Électeurs inscrits",votes:"Votes exprimés",
   volk:"Majorité du peuple",stand:"Majorité des cantons",needStand:"min. 12 sur 23 requis",needVolk:"plus de 50 % requis",
   pYes:"Part de oui",pTurn:"Participation",
-  presetResult:"Résultat « Pas de Suisse à 10 millions »",presetFifty:"50 % de oui partout",presetTurn:"Réinitialiser la participation",presetRahmen:"Accords-cadres (hypothétique)",rahmenNote:"Scénario « Accords-cadres » (hypothétique, pas une prévision) : 55 % de oui au total, entre les sondages (Leewas 46:40, gfs.bern/Interpharma 62:31). Les écarts cantonaux correspondent à l'écart moyen par rapport au résultat national lors de l'EEE 1992, des Bilatérales I 2000, de Schengen/Dublin 2005, de la libre circulation 2005 et 2009, de l'initiative contre l'immigration de masse 2014 et de l'initiative de limitation 2020 (source : Swissvotes). La participation est la moyenne de ces votations sans l'EEE.",
+  presetResult:"Résultat « Pas de Suisse à 10 millions »",presetFifty:"50 % de oui partout",presetTurn:"Réinitialiser la participation",scenTitle:"Scénarios",scenSub:"Choisissez un scénario de départ : il fixe la part de oui et la participation pour tous les cantons.",adjTitle:"Ajuster tous les cantons",adjSub:"Applique la même valeur à tous les cantons.",custom:"Valeurs personnalisées",descRahmen:"Votation hypothétique sur les accords-cadres avec l'UE : 55 % de oui au total, écarts cantonaux comme lors des votations européennes passées.",descResult:"Résultat effectif de la votation du 14 juin 2026 (« Pas de Suisse à 10 millions ! »).",descFifty:"Tous les cantons fixés à exactement 50 % de oui.",descCustom:"Valeurs personnalisées : le scénario a été modifié à la main.",presetRahmen:"Accords-cadres (hypothétique)",rahmenNote:"Scénario « Accords-cadres » (hypothétique, pas une prévision) : 55 % de oui au total, entre les sondages (Leewas 46:40, gfs.bern/Interpharma 62:31). Les écarts cantonaux correspondent à l'écart moyen par rapport au résultat national lors de l'EEE 1992, des Bilatérales I 2000, de Schengen/Dublin 2005, de la libre circulation 2005 et 2009, de l'initiative contre l'immigration de masse 2014 et de l'initiative de limitation 2020 (source : Swissvotes). La participation est la moyenne de ces votations sans l'EEE.",
   mYes:"Fixer tous les oui",mTurn:"Fixer toutes les participations",
   canton:"Canton",votesCol:"Oui / Non",lNo:"Non",lYes:"Oui",yesWord:"Oui",noWord:"Non",half:"Demi-canton (compte ½)",
   notes:"Hypothèses : la part de oui porte sur les bulletins valables ; les bulletins blancs et nuls sont ignorés. Un canton est favorable s'il dépasse 50 % de oui (50 % exactement = non). Les demi-cantons (OW, NW, BS, BL, AR, AI) comptent ½ voix ; la majorité des cantons exige 12 voix sur 23.",
@@ -234,7 +246,7 @@ const I18N = {
   turnout:"Partecipazione totale",voters:"Aventi diritto di voto",votes:"Voti espressi",
   volk:"Maggioranza del popolo",stand:"Maggioranza dei Cantoni",needStand:"almeno 12 su 23 necessari",needVolk:"oltre il 50 % necessario",
   pYes:"Quota di sì",pTurn:"Partecipazione",
-  presetResult:"Risultato «No alla Svizzera da 10 milioni»",presetFifty:"50 % di sì ovunque",presetTurn:"Ripristina partecipazione",presetRahmen:"Accordi quadro (ipotetico)",rahmenNote:"Scenario «Accordi quadro» (ipotetico, non una previsione): 55 % di sì in totale, tra i sondaggi (Leewas 46:40, gfs.bern/Interpharma 62:31). Le differenze cantonali corrispondono allo scarto medio dal risultato nazionale in SEE 1992, Bilaterali I 2000, Schengen/Dublino 2005, libera circolazione 2005 e 2009, iniziativa contro l'immigrazione di massa 2014 e iniziativa di limitazione 2020 (fonte: Swissvotes). La partecipazione è la media di queste votazioni senza il SEE.",
+  presetResult:"Risultato «No alla Svizzera da 10 milioni»",presetFifty:"50 % di sì ovunque",presetTurn:"Ripristina partecipazione",scenTitle:"Scenari",scenSub:"Scegli uno scenario di partenza: imposta la quota di sì e la partecipazione per tutti i Cantoni.",adjTitle:"Regola tutti i Cantoni",adjSub:"Applica lo stesso valore a tutti i Cantoni.",custom:"Valori personalizzati",descRahmen:"Votazione ipotetica sugli accordi quadro con l'UE: 55 % di sì in totale, differenze cantonali come nelle votazioni europee passate.",descResult:"Risultato effettivo della votazione del 14 giugno 2026 («No alla Svizzera da 10 milioni!»).",descFifty:"Tutti i Cantoni impostati esattamente al 50 % di sì.",descCustom:"Valori personalizzati: lo scenario è stato modificato a mano.",presetRahmen:"Accordi quadro (ipotetico)",rahmenNote:"Scenario «Accordi quadro» (ipotetico, non una previsione): 55 % di sì in totale, tra i sondaggi (Leewas 46:40, gfs.bern/Interpharma 62:31). Le differenze cantonali corrispondono allo scarto medio dal risultato nazionale in SEE 1992, Bilaterali I 2000, Schengen/Dublino 2005, libera circolazione 2005 e 2009, iniziativa contro l'immigrazione di massa 2014 e iniziativa di limitazione 2020 (fonte: Swissvotes). La partecipazione è la media di queste votazioni senza il SEE.",
   mYes:"Imposta tutti i sì",mTurn:"Imposta tutte le partecipazioni",
   canton:"Cantone",votesCol:"Sì / No",lNo:"No",lYes:"Sì",yesWord:"Sì",noWord:"No",half:"Semicantone (vale ½)",
   notes:"Ipotesi: la quota di sì si riferisce ai voti validi; schede bianche e nulle sono ignorate. Un Cantone è favorevole con oltre il 50 % di sì (esattamente 50 % = no). I semicantoni (OW, NW, BS, BL, AR, AI) valgono ½ voto; per la maggioranza dei Cantoni servono 12 voti su 23.",
@@ -245,7 +257,7 @@ const I18N = {
   turnout:"Participaziun totala",voters:"Persunas cun dretg da votar",votes:"Vuschs deponidas",
   volk:"Maioritad dal pievel",stand:"Maioritad dals chantuns",needStand:"almain 12 da 23 necessari",needVolk:"dapli che 50 % necessari",
   pYes:"Quota da gea",pTurn:"Participaziun",
-  presetResult:"Resultat «Nagina Svizra da 10 milliuns»",presetFifty:"Dapertut 50 % gea",presetTurn:"Reinizialisar la participaziun",presetRahmen:"Contracts-quadro (ipotetic)",rahmenNote:"Scenari «Contracts-quadro» (ipotetic, nagina prognosa): 55 % gea en total, tranter las dumondas (Leewas 46:40, gfs.bern/Interpharma 62:31). Las differenzas chantunalas correspundan a la deviaziun media dal resultat naziunal tar la SEE 1992, ils Bilaterals I 2000, Schengen/Dublin 2005, la libra circulaziun 2005 e 2009, l'iniziativa cunter l'immigraziun da massa 2014 e l'iniziativa da limitaziun 2020 (funtauna: Swissvotes). La participaziun è la media da questas votaziuns senza la SEE.",
+  presetResult:"Resultat «Nagina Svizra da 10 milliuns»",presetFifty:"Dapertut 50 % gea",presetTurn:"Reinizialisar la participaziun",scenTitle:"Scenaris",scenSub:"Tscherna in scenari sco basa – el fixescha la quota da gea e la participaziun per tut ils chantuns.",adjTitle:"Adattar tut ils chantuns",adjSub:"Metta tut ils chantuns sin la medema valur.",custom:"Valurs atgnas",descRahmen:"Votaziun ipotetica davart ils contracts-quadro cun la UE: 55 % gea en total, differenzas chantunalas sco tar votaziuns europeicas passadas.",descResult:"Resultat effectiv da la votaziun dals 14 da zercladur 2026 («Nagina Svizra da 10 milliuns!»).",descFifty:"Tut ils chantuns sin exact 50 % gea.",descCustom:"Valurs atgnas: il scenari è vegnì adattà a maun.",presetRahmen:"Contracts-quadro (ipotetic)",rahmenNote:"Scenari «Contracts-quadro» (ipotetic, nagina prognosa): 55 % gea en total, tranter las dumondas (Leewas 46:40, gfs.bern/Interpharma 62:31). Las differenzas chantunalas correspundan a la deviaziun media dal resultat naziunal tar la SEE 1992, ils Bilaterals I 2000, Schengen/Dublin 2005, la libra circulaziun 2005 e 2009, l'iniziativa cunter l'immigraziun da massa 2014 e l'iniziativa da limitaziun 2020 (funtauna: Swissvotes). La participaziun è la media da questas votaziuns senza la SEE.",
   mYes:"Fixar tut las quotas da gea",mTurn:"Fixar tut las participaziuns",
   canton:"Chantun",votesCol:"Gea / Na",lNo:"Na",lYes:"Gea",yesWord:"Gea",noWord:"Na",half:"Mez chantun (vala ½)",
   notes:"Premissas: la quota da gea sa referescha a las vuschs valaivlas; las vuschs vidas ed nunvalaivlas na vegnan betg resguardadas. In chantun vala sco gea cun dapli che 50 % gea (exact 50 % = na). Ils mez chantuns (OW, NW, BS, BL, AR, AI) valan ½ vusch; per la maioritad dals chantuns dovri 12 da 23 vuschs dals chantuns.",
@@ -256,7 +268,7 @@ const I18N = {
   turnout:"Overall turnout",voters:"Eligible voters",votes:"Votes cast",
   volk:"Popular majority",stand:"Cantonal majority",needStand:"at least 12 of 23 needed",needVolk:"more than 50% needed",
   pYes:"Yes share",pTurn:"Turnout",
-  presetResult:"“No 10-million Switzerland” result",presetFifty:"50% yes everywhere",presetTurn:"Reset turnout",presetRahmen:"Framework agreements (hypothetical)",rahmenNote:"Scenario “Framework agreements” (hypothetical, not a forecast): 55% yes overall, between the polls (Leewas 46:40, gfs.bern/Interpharma 62:31). Cantonal differences equal each canton's average deviation from the national result in the EEA 1992, Bilaterals I 2000, Schengen/Dublin 2005, free movement 2005 and 2009, Mass Immigration Initiative 2014 and Limitation Initiative 2020 votes (source: Swissvotes). Turnout is the average of these votes excluding the EEA.",
+  presetResult:"“No 10-million Switzerland” result",presetFifty:"50% yes everywhere",presetTurn:"Reset turnout",scenTitle:"Scenarios",scenSub:"Pick a scenario as a starting point – it sets the yes share and turnout for every canton.",adjTitle:"Adjust all cantons",adjSub:"Sets every canton to the same value.",custom:"Custom values",descRahmen:"Hypothetical vote on the framework agreements with the EU: 55% yes overall, cantonal differences as in past Europe-related votes.",descResult:"Actual result of the vote of 14 June 2026 (“No 10-million Switzerland!”).",descFifty:"Every canton set to exactly 50% yes.",descCustom:"Custom values: the scenario has been adjusted by hand.",presetRahmen:"Framework agreements (hypothetical)",rahmenNote:"Scenario “Framework agreements” (hypothetical, not a forecast): 55% yes overall, between the polls (Leewas 46:40, gfs.bern/Interpharma 62:31). Cantonal differences equal each canton's average deviation from the national result in the EEA 1992, Bilaterals I 2000, Schengen/Dublin 2005, free movement 2005 and 2009, Mass Immigration Initiative 2014 and Limitation Initiative 2020 votes (source: Swissvotes). Turnout is the average of these votes excluding the EEA.",
   mYes:"Set all yes shares",mTurn:"Set all turnouts",
   canton:"Canton",votesCol:"Yes / No",lNo:"No",lYes:"Yes",yesWord:"Yes",noWord:"No",half:"Half-canton (counts ½)",
   notes:"Assumptions: the yes share refers to valid votes; blank and invalid ballots are ignored. A canton counts as yes with more than 50% yes (exactly 50% counts as no). Half-cantons (OW, NW, BS, BL, AR, AI) count ½ cantonal vote each; the cantonal majority needs 12 of 23.",
@@ -283,7 +295,7 @@ const $ = id => document.getElementById(id);
 let lang = "de";
 try{ const s = localStorage.getItem("lang"); if(LANGS.includes(s)) lang=s; else { const n=(navigator.language||"").slice(0,2); if(LANGS.includes(n)) lang=n; } }catch(e){}
 const st = {yes:{}, turn:{}};
-let selected = null;
+let selected = null, scenario = "rahmen";
 const clamp = (x,a,b) => Math.min(b,Math.max(a,x));
 
 function loadPreset(kind){
@@ -294,6 +306,8 @@ function loadPreset(kind){
     if(kind==="turnout"||kind==="result"||kind==="init") st.turn[c.id]=c.turnout;
     if(kind==="init") st.yes[c.id]=50;
   });
+  if(kind==="turnout"){ if(scenario==="rahmen") scenario="custom"; }
+  else scenario = kind;
   syncInputs(); render();
 }
 
@@ -327,7 +341,7 @@ function buildStatic(){
   $("rows").addEventListener("input", e=>{
     const t=e.target; if(t.type!=="range"&&t.type!=="number") return;
     const v=parseFloat(t.value); if(isNaN(v)) return;
-    st[t.dataset.k][t.dataset.id]=clamp(v,0,100); render();
+    st[t.dataset.k][t.dataset.id]=clamp(v,0,100); scenario="custom"; render();
   });
   $("rows").addEventListener("change", e=>{ if(e.target.type==="number"){ e.target.blur(); render(); } });
   $("rows").addEventListener("click", e=>{ const tr=e.target.closest("tr"); if(tr&&e.target.tagName!=="INPUT") select(+tr.dataset.id); });
@@ -341,7 +355,7 @@ function buildStatic(){
   svg.addEventListener("mouseleave",()=>tip.style.display="none");
   svg.addEventListener("click",e=>{ const p=e.target.closest("path"); if(p) select(+p.dataset.id,true); });
   $("p-result").onclick=()=>loadPreset("result"); $("p-rahmen").onclick=()=>loadPreset("rahmen"); $("p-fifty").onclick=()=>loadPreset("fifty"); $("p-turnout").onclick=()=>loadPreset("turnout");
-  const setAll=(k,e)=>{ const v=parseFloat(e.target.value); if(isNaN(v)) return; CANTONS.forEach(c=>st[k][c.id]=clamp(v,0,100)); render(); };
+  const setAll=(k,e)=>{ const v=parseFloat(e.target.value); if(isNaN(v)) return; CANTONS.forEach(c=>st[k][c.id]=clamp(v,0,100)); scenario="custom"; render(); };
   ["m-yes","mv-yes"].forEach(id=>$(id).oninput=e=>setAll("yes",e));
   ["m-turn","mv-turn"].forEach(id=>$(id).oninput=e=>setAll("turn",e));
   ["mv-yes","mv-turn"].forEach(id=>$(id).onchange=e=>{ e.target.blur(); render(); });
@@ -361,7 +375,7 @@ function applyText(){
   set("t-title",t.title); set("t-sub",t.sub); set("t-yesShare",t.yesShare); set("t-cantons",t.cantons); set("t-result",t.result);
   set("t-turnout",t.turnout); set("t-voters",t.voters); set("t-votes",t.votes);
   set("p-result",t.presetResult); set("p-rahmen",t.presetRahmen); set("t-rahmen",t.rahmenNote); set("p-fifty",t.presetFifty); set("p-turnout",t.presetTurn);
-  set("t-mYes",t.mYes); set("t-mTurn",t.mTurn); set("h-canton",t.canton); set("h-yes",t.pYes); set("h-turn",t.pTurn); set("h-votes",t.votesCol);
+  set("t-mYes",t.mYes); set("t-scenTitle",t.scenTitle); set("t-scenSub",t.scenSub); set("t-adjTitle",t.adjTitle); set("t-adjSub",t.adjSub); set("t-mTurn",t.mTurn); set("h-canton",t.canton); set("h-yes",t.pYes); set("h-turn",t.pTurn); set("h-votes",t.votesCol);
   document.querySelectorAll('.lbl[data-l="yes"]').forEach(e=>e.textContent=t.pYes); document.querySelectorAll('.lbl[data-l="turn"]').forEach(e=>e.textContent=t.pTurn);
   set("t-lNo",t.lNo); set("t-lYes",t.lYes); set("t-notes",t.notes); set("t-source",t.source);
   document.querySelectorAll("#langs button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
@@ -372,6 +386,9 @@ function color(y){ // 0..100 -> diverging red / neutral / green
 }
 function render(){
   const r=compute(), t=T(), ok=r.volk&&r.stand;
+  document.querySelectorAll(".scens .pre").forEach(b=>{ const on=b.dataset.scen===scenario; b.classList.toggle("on",on); b.setAttribute("aria-pressed",on); });
+  const desc={rahmen:t.descRahmen,result:t.descResult,fifty:t.descFifty,custom:t.descCustom}[scenario]||"";
+  $("scen-desc").textContent=desc; $("scen-desc").className="scen-desc"+(scenario==="custom"?" custom":"");
   $("o-yes").textContent=fmt(r.share,1)+" %"; $("o-yes").className="num "+(r.volk?"ok":"bad");
   $("o-yesNote").innerHTML=`${fmt(r.yes)} ${t.yesWord} · ${fmt(r.tot-r.yes)} ${t.noWord}`;
   $("o-cantons").textContent=fmt(r.cy,r.cy%1?1:0)+" / 23"; $("o-cantons").className="num "+(r.stand?"ok":"bad");
