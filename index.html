@@ -21,7 +21,7 @@ header{display:flex;justify-content:space-between;align-items:flex-start;gap:24p
 h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
 .sub{color:var(--muted);max-width:720px;margin:0}
 .langs{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
-.langs button{border:0;background:none;color:var(--muted);font:600 13px inherit;padding:6px 10px;border-radius:7px;cursor:pointer}
+.langs button{border:0;background:none;color:var(--muted);font:inherit;font-weight:600;font-size:13px;padding:6px 10px;border-radius:7px;cursor:pointer}
 .langs button.on{background:var(--ink);color:var(--bg)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
 
@@ -41,7 +41,7 @@ h1{font-size:26px;margin:0 0 4px;letter-spacing:-.02em}
 .sec b{color:var(--ink);font-weight:600}
 
 /* controls */
-button.pre{border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 13px inherit;padding:8px 12px;border-radius:9px;cursor:pointer}
+button.pre{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;font-size:15px;padding:9px 14px;border-radius:9px;cursor:pointer}
 button.pre:hover{border-color:var(--ink)}
 /* scenario + adjust panels */
 .panels{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:20px}
@@ -57,7 +57,7 @@ button.pre.on::before{content:"✓ "}
 .adj .grp>span:first-child{grid-area:l}
 .adj .grp>input{grid-area:s;width:100%}
 .adj .grp>.v{grid-area:v;color:var(--ink)}
-button.link{background:none;border:0;padding:0;color:var(--muted);font:600 13px inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+button.link{background:none;border:0;padding:0;color:var(--muted);font:inherit;font-weight:600;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 button.link:hover{color:var(--ink)}
 
 /* main */
@@ -67,7 +67,7 @@ svg.map{width:100%;height:auto;display:block}
 svg.map path{stroke:var(--card);stroke-width:1.5;stroke-linejoin:round;cursor:pointer;transition:fill .15s}
 svg.map path.sel{stroke:var(--ink);stroke-width:3}
 .legend{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:8px}
-.legend .bar{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--no),#e8e3d9 50%,var(--yes))}
+.legend .bar{flex:1;height:10px;border-radius:5px;background:linear-gradient(90deg,rgb(140,22,32),rgb(248,196,199) 50%,rgb(190,232,207) 50%,rgb(12,104,58))}
 .tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:6px 10px;border-radius:8px;display:none;z-index:20;white-space:nowrap}
 
 table{width:100%;border-collapse:collapse}
@@ -380,9 +380,10 @@ function applyText(){
   set("t-lNo",t.lNo); set("t-lYes",t.lYes); set("t-notes",t.notes); set("t-source",t.source);
   document.querySelectorAll("#langs button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));
 }
-function color(y){ // 0..100 -> diverging red / neutral / green
-  const k=clamp((y-50)/30,-1,1), a=k<0?[214,48,58]:[31,157,99], m=[232,227,217], w=Math.abs(k);
-  return `rgb(${a.map((v,i)=>Math.round(m[i]+(v-m[i])*w)).join(",")})`;
+function color(y){ // no (<=50): light -> dark red; yes (>50): light -> dark green
+  const yes=y>50, w=clamp(Math.abs(y-50)/25,0,1);
+  const [a,b]=yes?[[190,232,207],[12,104,58]]:[[248,196,199],[140,22,32]];
+  return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*w)).join(",")})`;
 }
 function render(){
   const r=compute(), t=T(), ok=r.volk&&r.stand;
