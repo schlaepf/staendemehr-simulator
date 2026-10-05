@@ -108,8 +108,8 @@ input[type=range]{touch-action:pan-y}
   tr.sel{background:var(--yes-soft)}
   td{padding:5px 0;border:0}
   .cn{display:block;white-space:normal}
-  .cell{gap:10px}
-  .lbl{display:block;width:72px;flex:none;font-size:12px;color:var(--muted)}
+  .cell{gap:4px 10px;flex-wrap:wrap}
+  .lbl{display:block;width:100%;font-size:12px;color:var(--muted)}
   td.votes{font-size:12px}
 }
 @media (max-width:700px){
@@ -139,6 +139,14 @@ input[type=range]{touch-action:pan-y}
   .pct{font-size:16px;width:64px;padding:6px 8px}
   .mapcard{padding:10px}
 }
+@media (max-width:400px){
+  .hero{grid-template-columns:1fr 1fr 1.25fr;gap:6px}
+  .big{padding:8px 9px}
+  .big .label{font-size:9px;letter-spacing:0;hyphens:auto;overflow-wrap:anywhere}
+  .big .num{font-size:19px;white-space:nowrap}
+  .verdict .num{font-size:15px;word-break:normal;overflow-wrap:normal}
+}
+@media (max-height:500px){.hero{position:static}.mapcard{position:static}th{position:static}}
 </style>
 </head>
 <body>
