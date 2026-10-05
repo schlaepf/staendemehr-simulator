@@ -1,0 +1,210 @@
+[
+ {
+  "id": 1,
+  "abbr": "ZH",
+  "half": false,
+  "voters": 982722,
+  "turnout": 61.02,
+  "yes": 39.97
+ },
+ {
+  "id": 2,
+  "abbr": "BE",
+  "half": false,
+  "voters": 748021,
+  "turnout": 59.94,
+  "yes": 44.6
+ },
+ {
+  "id": 3,
+  "abbr": "LU",
+  "half": false,
+  "voters": 289486,
+  "turnout": 64.13,
+  "yes": 49.01
+ },
+ {
+  "id": 4,
+  "abbr": "UR",
+  "half": false,
+  "voters": 27244,
+  "turnout": 63.5,
+  "yes": 59.9
+ },
+ {
+  "id": 5,
+  "abbr": "SZ",
+  "half": false,
+  "voters": 109531,
+  "turnout": 67.93,
+  "yes": 63.19
+ },
+ {
+  "id": 6,
+  "abbr": "OW",
+  "half": true,
+  "voters": 27967,
+  "turnout": 67.64,
+  "yes": 58.48
+ },
+ {
+  "id": 7,
+  "abbr": "NW",
+  "half": true,
+  "voters": 32134,
+  "turnout": 65.98,
+  "yes": 58.13
+ },
+ {
+  "id": 8,
+  "abbr": "GL",
+  "half": false,
+  "voters": 26857,
+  "turnout": 58.36,
+  "yes": 58.6
+ },
+ {
+  "id": 9,
+  "abbr": "ZG",
+  "half": false,
+  "voters": 80118,
+  "turnout": 67.75,
+  "yes": 47.64
+ },
+ {
+  "id": 10,
+  "abbr": "FR",
+  "half": false,
+  "voters": 220942,
+  "turnout": 56.68,
+  "yes": 45.13
+ },
+ {
+  "id": 11,
+  "abbr": "SO",
+  "half": false,
+  "voters": 184392,
+  "turnout": 58.64,
+  "yes": 50.67
+ },
+ {
+  "id": 12,
+  "abbr": "BS",
+  "half": true,
+  "voters": 114902,
+  "turnout": 61.51,
+  "yes": 26.52
+ },
+ {
+  "id": 13,
+  "abbr": "BL",
+  "half": true,
+  "voters": 192865,
+  "turnout": 59.04,
+  "yes": 44.13
+ },
+ {
+  "id": 14,
+  "abbr": "SH",
+  "half": false,
+  "voters": 55011,
+  "turnout": 74.06,
+  "yes": 49.23
+ },
+ {
+  "id": 15,
+  "abbr": "AR",
+  "half": true,
+  "voters": 39570,
+  "turnout": 63.67,
+  "yes": 53.21
+ },
+ {
+  "id": 16,
+  "abbr": "AI",
+  "half": true,
+  "voters": 12493,
+  "turnout": 64.95,
+  "yes": 65.92
+ },
+ {
+  "id": 17,
+  "abbr": "SG",
+  "half": false,
+  "voters": 335066,
+  "turnout": 59.61,
+  "yes": 53.76
+ },
+ {
+  "id": 18,
+  "abbr": "GR",
+  "half": false,
+  "voters": 143330,
+  "turnout": 59.42,
+  "yes": 48.51
+ },
+ {
+  "id": 19,
+  "abbr": "AG",
+  "half": false,
+  "voters": 450411,
+  "turnout": 59.62,
+  "yes": 51.05
+ },
+ {
+  "id": 20,
+  "abbr": "TG",
+  "half": false,
+  "voters": 183002,
+  "turnout": 59.87,
+  "yes": 55.35
+ },
+ {
+  "id": 21,
+  "abbr": "TI",
+  "half": false,
+  "voters": 226935,
+  "turnout": 50.48,
+  "yes": 50.66
+ },
+ {
+  "id": 22,
+  "abbr": "VD",
+  "half": false,
+  "voters": 487995,
+  "turnout": 53.54,
+  "yes": 35.53
+ },
+ {
+  "id": 23,
+  "abbr": "VS",
+  "half": false,
+  "voters": 236956,
+  "turnout": 56.77,
+  "yes": 47.22
+ },
+ {
+  "id": 24,
+  "abbr": "NE",
+  "half": false,
+  "voters": 115278,
+  "turnout": 50.42,
+  "yes": 32.74
+ },
+ {
+  "id": 25,
+  "abbr": "GE",
+  "half": false,
+  "voters": 286516,
+  "turnout": 51.62,
+  "yes": 34.58
+ },
+ {
+  "id": 26,
+  "abbr": "JU",
+  "half": false,
+  "voters": 59369,
+  "turnout": 50.74,
+  "yes": 40.09
+ }
+]
